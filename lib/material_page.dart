@@ -26,6 +26,12 @@ class _Mypage extends State<Mypage> {
     //Notify the framework that the internal state of this object has changed.Here it is double result
   }
 
+  void clearTextField() {
+    textEditingController.clear();
+    result = 0;
+    setState(() {});
+  }
+
   @override
   void dispose() {
     textEditingController.dispose();
@@ -62,7 +68,7 @@ class _Mypage extends State<Mypage> {
               Text(
                 'INR ${result != 0 ? result.toStringAsFixed(3) : result.toStringAsFixed(0)}',
                 style: const TextStyle(
-                  fontSize: 55,
+                  fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 255, 255, 255),
                 ),
@@ -73,9 +79,10 @@ class _Mypage extends State<Mypage> {
                   color: Colors.black,
                 ),
                 decoration: InputDecoration(
-                  hintText: 'Please enter the amount in USD',
+                  hintText: 'Enter the amount in USD',
                   hintStyle: const TextStyle(
                     color: Colors.black,
+                    fontSize: 14.0, // Adjust the font size as desired
                   ),
                   prefixIcon: const Icon(Icons.monetization_on_outlined),
                   prefixIconColor: Colors.black,
@@ -87,6 +94,20 @@ class _Mypage extends State<Mypage> {
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: IconButton(
+                      onPressed: clearTextField,
+                      icon: const Icon(
+                        Icons.cleaning_services_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
               ElevatedButton(
